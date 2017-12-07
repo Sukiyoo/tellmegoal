@@ -23,7 +23,7 @@ $config['ports'][] = [
     'socket_port' => 8081,
     'route_tool' => 'NormalRoute',
     'middlewares' => ['MonitorMiddleware', 'NormalHttpMiddleware'],
-    'method_prefix' => 'action'
+    'method_prefix' => 'http_'
 ];
 
 $config['ports'][] = [
