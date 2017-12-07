@@ -35,7 +35,7 @@ class AppController extends Controller
         $this->send("ok.$this->fd");
     }
 
-    public function http_remove()
+    public function actionRemove()
     {
         $sub = $this->http_input->get('sub');
         $fd = (int)$this->http_input->get('fd');
