@@ -49,7 +49,7 @@ class NormalRoute implements IRoute
         if ($count == 2) {
             $this->client_data->controller_name = $route[$count - 1] ?? null;
             if($this->client_data->controller_name){
-                $this->client_data->controller_name = $this->client_data->controller_name."Controller";
+                $this->client_data->controller_name = ucfirst($this->client_data->controller_name)."Controller";
             }
             $this->client_data->method_name = null;
             return;
