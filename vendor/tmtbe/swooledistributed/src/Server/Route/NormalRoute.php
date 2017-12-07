@@ -55,9 +55,6 @@ class NormalRoute implements IRoute
         unset($route[$count - 1]);
         unset($route[0]);
         $this->client_data->controller_name = implode("\\", $route);
-        if($this->client_data->controller_name){
-            $this->client_data->controller_name = ucfirst($this->client_data->controller_name)."Controller";
-        }
     }
 
     /**
