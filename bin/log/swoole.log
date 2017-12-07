@@ -17,3 +17,9 @@
 [2017-12-07 18:01:16 *26021.3]	WARNING	swSignalfd_onSignal: signal[1] callback is null.
 [2017-12-07 18:01:16 *26020.2]	WARNING	swSignalfd_onSignal: signal[1] callback is null.
 [SYS]	已开启代码热重载
+[RELOAD]	/opt/tellmegoal.com/api/tellmegoal/src/config/ports.php update
+[RELOAD]	/opt/tellmegoal.com/api/tellmegoal/vendor/tmtbe/swooledistributed/src/Server/Route/NormalRoute.php update
+[2017-12-07 22:08:09 $27835.0]	NOTICE	Server is reloading now.
+[2017-12-07 22:10:32 $27835.0]	NOTICE	Server is reloading now.
+[2017-12-07 22:11:08 #27834.4]	NOTICE	Server is shutdown now.
+[SYS]	已开启代码热重载
