@@ -18,7 +18,7 @@ class MemberController extends Controller{
 
     public function actionRegister(){
 //        $model = $this->loader->model(MemberModel::class, $this);
-        
+
 //        $id = yield $this->mysql_pool->coroutineBegin($this);
 //        $update_result = yield $this->mysql_pool->dbQueryBuilder->update('member')->set('sex', '1')->where('uid', 10000)->coroutineSend($id);
 //        $result = yield $this->mysql_pool->dbQueryBuilder->select('*')->from('user_info')->where('uid', 10000)->coroutineSend($id);
@@ -30,7 +30,7 @@ class MemberController extends Controller{
 //            yield $this->mysql_pool->coroutineRollback($id);
 //        }
         $result = yield $this->mysql_pool->dbQueryBuilder->select('*')
-            ->from('account')
+            ->from('member')
             ->coroutineSend()->row();
         $this->http_output->end($result, false);
     }
