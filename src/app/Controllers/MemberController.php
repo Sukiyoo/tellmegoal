@@ -33,5 +33,9 @@ class MemberController extends Controller{
             ->from('member')
             ->coroutineSend()->row();
         $this->http_output->end($result, false);
+
+//        $result = yield $this->redis_pool->getCoroutine()->set('testroute', 1);
+        $result = yield $this->redis_pool->getCoroutine()->select(1);
+        yield $this->redis_pool->getCoroutine()->set("key","111");
     }
 }
