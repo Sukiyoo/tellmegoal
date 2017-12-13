@@ -2,13 +2,42 @@
 
 namespace app\Controllers;
 
-use app\Models\MemberModel;
 use Server\CoreBase\Controller;
 
+class ArticleController extends Controller{
 
-class MemberController extends Controller{
+    public $ArticleModel;
+    protected function initialization($controller_name, $method_name)
+    {
+        parent::initialization($controller_name, $method_name);
+        $this->ArticleModel = $this->loader->model('ArticleModel', $this);
+    }
 
-    public $MemberModel;
+    public function actionAdd(){
+        $time = time();
+        yield $this->redis_pool->getCoroutine()->multi();
+        $num =  yield $this->redis_pool->getCoroutine()->sCard("article");
+        $id = $num + 1;
+        $article_key = "article:".$id;
+        $article_arr = [
+            "title" => "IOTA-如何尽快确认”pending”的交易",
+            "link" => "http://www.iotachina.com/",
+            "poster" => "user",
+            "votes" => "0"
+        ];
+        $res1 = yield $this->redis_pool->getCoroutine()->hMset($article_key,$article_arr);
+        $res2 = yield $this->redis_pool->getCoroutine()->zAdd("score:",$time,$article_key);
+        if($res1 && $res2){
+            $this->redis_pool->getCoroutine()->exec();
+            $this->http_output->end("添加失败!");
+        }else{
+            $this->redis_pool->getCoroutine()->discard();
+            $this->http_output->end("添加成功!");
+        }
+
+
+    }
+
 //
 //    protected function initialization($controller_name, $method_name)
 //    {
