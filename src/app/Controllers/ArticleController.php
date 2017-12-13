@@ -35,7 +35,7 @@ class ArticleController extends Controller{
             $this->http_output->end("添加成功!");
         }
 
-        
+
     }
 
 //
