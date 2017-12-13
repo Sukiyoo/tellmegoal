@@ -15,7 +15,7 @@ class ArticleController extends Controller{
 
     public function actionAdd(){
         $time = time();
-        yield $this->redis_pool->getCoroutine()->multi();
+        $this->redis_pool->getCoroutine()->multi();
         $num =  yield $this->redis_pool->getCoroutine()->sCard("article");
         $id = $num + 1;
         $article_key = "article:".$id;
@@ -29,10 +29,10 @@ class ArticleController extends Controller{
         $res2 = yield $this->redis_pool->getCoroutine()->zAdd("score:",$time,$article_key);
         if($res1 && $res2){
             $this->redis_pool->getCoroutine()->exec();
-            $this->http_output->end("添加失败!");
+            $this->http_output->end("添加成功!");
         }else{
             $this->redis_pool->getCoroutine()->discard();
-            $this->http_output->end("添加成功!");
+            $this->http_output->end("添加失败!");
         }
 
 
