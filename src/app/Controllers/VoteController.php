@@ -2,13 +2,33 @@
 
 namespace app\Controllers;
 
-use app\Models\MemberModel;
 use Server\CoreBase\Controller;
 
+class VoteController extends Controller{
 
-class MemberController extends Controller{
+    public $VoteModel;
+    protected function initialization($controller_name, $method_name)
+    {
+        parent::initialization($controller_name, $method_name);
+        $this->VoteModel = $this->loader->model('VoteModel', $this);
+    }
 
-    public $MemberModel;
+    public function actionAdd(){
+        $time = time();
+        $score =
+        yield $this->redis_pool->getCoroutine()->select(1);
+        yield $this->redis_pool->getCoroutine()->set("key","111");
+        $this->destroy();
+
+        // 1.投票200为有趣
+        // 2.有趣的在前面展示1天
+        // 3.每票分数432
+
+        // 设计：两个有序集合 1.id time 2.id vote_score
+
+
+    }
+
 //
 //    protected function initialization($controller_name, $method_name)
 //    {
