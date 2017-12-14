@@ -20,6 +20,7 @@ class MemberController extends Controller{
 
     public function actionGetRaw(){
         $res = yield $this->http_input->getRawContent();
+        $this->http_output->setHeader("Content-Type","application/json");
         $this->http_output->end($res);
     }
 
