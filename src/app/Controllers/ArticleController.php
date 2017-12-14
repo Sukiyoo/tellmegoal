@@ -27,6 +27,7 @@ class ArticleController extends Controller{
         ];
         $res1 = yield $this->redis_pool->getCoroutine()->hMset($article_key,$article_arr);
         $res2 = yield $this->redis_pool->getCoroutine()->zAdd("score:",$time,$article_key);
+        $this->setContext($this->config['fileHeader']['html']);
         if($res1 && $res2){
             $this->redis_pool->getCoroutine()->exec();
             $this->http_output->end("添加成功!");
@@ -46,6 +47,7 @@ class ArticleController extends Controller{
 //    }
 
     public function actionRegister(){
+
 //        $model = $this->loader->model(MemberModel::class, $this);
 
 //        $id = yield $this->mysql_pool->coroutineBegin($this);
