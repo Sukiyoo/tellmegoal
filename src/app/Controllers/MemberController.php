@@ -16,6 +16,13 @@ class MemberController extends Controller{
 //        $this->MemberModel = $this->loader->model('MemberModel', $this);
 //    }
 
+
+
+    public function actionGetRaw(){
+        $res = yield $this->http_input->getRawContent();
+        $this->http_output->end($res);
+    }
+
     public function actionRegister(){
 //        $model = $this->loader->model(MemberModel::class, $this);
 
